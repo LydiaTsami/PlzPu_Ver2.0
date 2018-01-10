@@ -1,0 +1,13 @@
+.gradle
+/local.properties
+/.idea
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+app.iml
+trakt.properties
+trakt_staging.properties
+gradle.properties
+keystore

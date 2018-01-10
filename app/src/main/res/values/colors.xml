@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/boogie_green</color>
+    <color name="colorPrimaryDark">@color/almost_black</color>
+    <color name="colorAccent">@color/neon_green</color>
+
+    <color name="cocaine_white">#FFFFFFFF</color>
+    <color name="flat_gray">#FFDDDDDD</color>
+    <color name="cool_gray">#FF8C92AC</color>
+    <color name="dolphin_gray">#FF6E7285</color>
+    <color name="space_gray">#FF423F43</color>
+    <color name="moonlight_blue">#FF4F6582</color>
+    <color name="neon_green">#FFCBE86B</color>
+    <color name="almost_black">#FF1C140D</color>
+    <color name="boogie_green">#FFCBE86B</color>
+</resources>
