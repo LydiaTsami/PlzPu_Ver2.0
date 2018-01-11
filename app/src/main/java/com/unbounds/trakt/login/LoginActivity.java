@@ -5,17 +5,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.unbounds.trakt.ApiWrapper;
 import com.unbounds.trakt.BuildConfig;
 import com.unbounds.trakt.R;
 import com.unbounds.trakt.api.model.request.Code;
-import com.unbounds.trakt.api.model.response.Token;
-
-import rx.functions.Action1;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -55,15 +52,18 @@ public class LoginActivity extends AppCompatActivity {
     private void parseResponse(final Uri uri) {
         if (uri != null && uri.toString().startsWith(getString(R.string.oauth_referrer))) {
             final String authCode = uri.getQueryParameter("code");
+            System.out.println("Code : " + authCode);
             final Code code = new Code(authCode, getString(R.string.oauth_referrer));
-            ApiWrapper.getToken(code).subscribe(new Action1<Token>() {
-                @Override
-                public void call(final Token token) {
-                    LoginManager.getInstance().setToken(token);
-                    setResult(RESULT_OK);
-                    finish();
-                }
-            });
+            Log.i("Auth code new", code.getCode());
+
+//            ApiWrapper.getToken(code).subscribe(new Action1<Token>() {
+//                @Override
+//                public void call(final Token token) {
+//                    LoginManager.getInstance().setToken(token);
+//                    setResult(RESULT_OK);
+//                    finish();
+//                }
+//            });
         }
     }
 }

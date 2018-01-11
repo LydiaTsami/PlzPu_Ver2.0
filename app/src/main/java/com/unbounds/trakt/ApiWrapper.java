@@ -15,6 +15,7 @@ import rx.Observable;
  * Created by maclir on 11/7/15.
  */
 public class ApiWrapper {
+
     public static Observable<Token> getToken(final Code code) {
         return new RxRequest() {
             @Override
