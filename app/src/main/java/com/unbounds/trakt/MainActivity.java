@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.unbounds.trakt.login.LoginActivity;
+import com.unbounds.trakt.login.LoginManager;
 import com.unbounds.trakt.progress.ProgressFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -139,7 +140,8 @@ public class MainActivity extends AppCompatActivity
 
         }
         else if( id == R.id.sign_in){
-            startActivityForResult(LoginActivity.createIntent(MainActivity.this), LOGIN_REQUEST);
+            if(!LoginManager.getInstance().isLoggedIn())
+                startActivityForResult(LoginActivity.createIntent(MainActivity.this), LOGIN_REQUEST);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

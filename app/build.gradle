@@ -44,6 +44,7 @@ android {
 
         debug {
             applicationIdSuffix '.debug'
+            buildConfigField("String", "AccessToken", "null")
             buildConfigField("String", "CLIENT_ID", "\"26e3ae98275c5a2b752f2220800fe0c009e91a5e001d050cbc1e6ad7229a20c8\"")
             buildConfigField("String", "CLIENT_SECRET", "\"6fe2a367874d9b046714bdc104df9783ed7292567399c89360f80fdb8336cd61\"")
             buildConfigField("String", "BASE_API_URL", "\"http://api.staging.trakt.tv\"")
