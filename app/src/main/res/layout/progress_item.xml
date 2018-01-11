@@ -15,14 +15,12 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/gap_8">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/progress_item_show_poster"
                 android:layout_width="60dp"
                 android:layout_height="90dp"
-                android:layout_marginRight="@dimen/gap_16"
                 tools:background="@color/boogie_green" />
 
             <com.unbounds.trakt.widget.TintImageView
@@ -42,8 +40,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/progress_item_show_poster"
                 android:layout_alignTop="@id/progress_item_show_poster"
-                android:layout_marginLeft="@dimen/gap_8"
-                android:layout_marginRight="@dimen/gap_8"
                 android:layout_toLeftOf="@id/progress_item_check"
                 android:background="@color/flat_gray" />
 
@@ -59,7 +55,6 @@
                 android:id="@+id/progress_item_episode_title"
                 style="@style/Text.Text"
                 android:layout_below="@id/progress_item_show_title"
-                android:layout_marginTop="@dimen/gap_8"
                 android:layout_toLeftOf="@id/progress_item_divider"
                 android:layout_toRightOf="@id/progress_item_show_poster"
                 android:singleLine="true"

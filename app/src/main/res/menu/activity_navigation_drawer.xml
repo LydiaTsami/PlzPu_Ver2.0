@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_movie"
+            android:icon="@drawable/ic_movie_white_24dp"
+            android:title="Movies" />
+        <item
+            android:id="@+id/nav_show"
+            android:icon="@drawable/ic_tv_white_24dp"
+            android:title="Shows" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+    <item android:title="Trakt.tv">
+        <menu>
+            <item
+                android:id="@+id/sign_in"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Sign In" />
+        </menu>
+    </item>
+
+
+</menu>

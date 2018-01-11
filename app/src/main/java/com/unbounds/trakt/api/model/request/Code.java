@@ -19,4 +19,10 @@ public class Code {
         clientSecret = BuildConfig.CLIENT_SECRET;
         grantType = "authorization_code";
     }
+
+    public String getCode() {
+        return code;
+    }
+
+
 }

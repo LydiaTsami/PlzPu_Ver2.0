@@ -20,7 +20,7 @@ public class ApiWrapper {
         return new RxRequest() {
             @Override
             protected HttpRequest request() {
-                return new HttpRequest("%s/oauth/token", BuildConfig.BASE_URL).post(code);
+                return new HttpRequest("/oauth/token").post(code);
             }
         }.asObservable(Token.class);
     }
