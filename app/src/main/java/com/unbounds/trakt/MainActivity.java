@@ -13,11 +13,12 @@ import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RemoteViews;
+import android.widget.Toast;
 
-import com.unbounds.trakt.Search.MoviesSearchFragment;
-import com.unbounds.trakt.Search.ShowsSearchFragment;
 import com.unbounds.trakt.login.LoginActivity;
 import com.unbounds.trakt.login.LoginManager;
+import com.unbounds.trakt.progress.ProgressFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,6 +46,11 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        });
 
+        if (LoginManager.getInstance().isLoggedIn()) {
+            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.menu.activity_navigation_drawer);
+            remoteViews.setTextViewText(R.id.sign_in, "Sign out");
+        }
+
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -60,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         navigationView.getMenu().getItem(0).setChecked(true);
-        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+        onNavigationItemSelected(navigationView.getMenu().getItem(1));
 
     }
 
@@ -108,11 +114,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_show) {
             MainActivity.this.setTitle("Shows");
-//            if (LoginManager.getInstance().isLoggedIn()) {
-//                getFragmentManager().beginTransaction().replace(R.id.fragment_content, new ProgressFragment()).commit();
-//            }
             setupViewPager(mViewPager, "Shows");
-            //setupViewPager(mViewPager,"Shows");
 
         } else if (id == R.id.nav_share) {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -127,6 +129,10 @@ public class MainActivity extends AppCompatActivity
         else if( id == R.id.sign_in){
             if(!LoginManager.getInstance().isLoggedIn())
                 startActivityForResult(LoginActivity.createIntent(MainActivity.this), LOGIN_REQUEST);
+            else {
+                Toast.makeText(MainActivity.this, "Already signed in!",
+                        Toast.LENGTH_LONG).show();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -147,19 +153,20 @@ public class MainActivity extends AppCompatActivity
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager()) {
         };
         if(type=="Movies"){
-            MoviesSearchFragment moviepopularsearchFragment = MoviesSearchFragment.createInstance(MoviesSearchFragment.Type.POPULAR);
-           // TredingMoviesFragment movietrendingsearchFragment = TredingMoviesFragment.createInstance();
-            adapter.addFragment(moviepopularsearchFragment,"Popular");
-//            adapter.addFragment(movietrendingsearchFragment,"Trending");
-            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
-            adapter.addFragment(popularsearchFragment,"Popular Shows");
+//            MoviesSearchFragment moviepopularsearchFragment = MoviesSearchFragment.createInstance(MoviesSearchFragment.Type.POPULAR);
+//           // TredingMoviesFragment movietrendingsearchFragment = TredingMoviesFragment.createInstance();
+//            adapter.addFragment(moviepopularsearchFragment,"Popular");
+////            adapter.addFragment(movietrendingsearchFragment,"Trending");
+//            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
+//            adapter.addFragment(popularsearchFragment,"Popular Shows");
         }
         else if(type=="Shows"){
-            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
-            ShowsSearchFragment trendingsearchFragment= ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.TRENDING);
-            adapter.addFragment(trendingsearchFragment,"Trending");
-            adapter.addFragment(popularsearchFragment,"Popular Shows");
-            //adapter.addFragment(new ProgressFragment(),"Watched Progress");
+            System.out.println("Got in");
+//            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
+//            ShowsSearchFragment trendingsearchFragment= ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.TRENDING);
+//            adapter.addFragment(trendingsearchFragment,"Trending");
+//            adapter.addFragment(popularsearchFragment,"Popular Shows");
+            adapter.addFragment(new ProgressFragment(),"Watched Progress");
         }
         viewPager.setAdapter(adapter);
     }
