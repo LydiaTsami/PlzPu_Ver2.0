@@ -3,6 +3,7 @@ package com.unbounds.trakt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -52,15 +53,13 @@ public class MainActivity extends AppCompatActivity
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-//
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-//        tabLayout.setupWithViewPager(mViewPager);
-//        navigationView.getMenu().getItem(0).setChecked(true);
-//        onNavigationItemSelected(navigationView.getMenu().getItem(0));
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+        navigationView.getMenu().getItem(0).setChecked(true);
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
     }
 
@@ -105,29 +104,14 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_movie) {
             MainActivity.this.setTitle("Movies");
             setupViewPager(mViewPager,"Movies");
-            //        Client client = ClientBuilder.newClient();
-            //Response for popular movies
-//        Response response = client.target("https://api.trakt.tv/movies/popular")
-//                .request(MediaType.APPLICATION_JSON_TYPE)
-//                .header("trakt-api-version", "2")
-//                .header("trakt-api-key", "440f3de55f18c4ee68ebf7ac8329f1ebc6ab5a5e9729edaa36eb1bfe4324bb86")
-//                .get();
-//        System.out.println("status: " + response.getStatus());
-//        System.out.println("headers: " + response.getHeaders());
-//        System.out.println("body:" + response.readEntity(String.class));
+
         } else if (id == R.id.nav_show) {
             MainActivity.this.setTitle("Shows");
-            setupViewPager(mViewPager,"Shows");
-//        Client client = ClientBuilder.newClient();
-//        //Response for popular shows
-//        Response response = client.target("https://api.trakt.tv/shows/popular")
-//                .request(MediaType.APPLICATION_JSON_TYPE)
-//                .header("trakt-api-version", "2")
-//                .header("trakt-api-key", "440f3de55f18c4ee68ebf7ac8329f1ebc6ab5a5e9729edaa36eb1bfe4324bb86")
-//                .get();
-            //        System.out.println("status: " + response.getStatus());
-//        System.out.println("headers: " + response.getHeaders());
-//        System.out.println("body:" + response.readEntity(String.class));
+//            if (LoginManager.getInstance().isLoggedIn()) {
+//                getFragmentManager().beginTransaction().replace(R.id.fragment_content, new ProgressFragment()).commit();
+//            }
+            setupViewPager(mViewPager, "Shows");
+            //setupViewPager(mViewPager,"Shows");
 
         } else if (id == R.id.nav_share) {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -153,17 +137,20 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         if (requestCode == LOGIN_REQUEST) {
             if (resultCode == RESULT_OK) {
-                getFragmentManager().beginTransaction().replace(R.id.fragment_content, new ProgressFragment()).commit();
+                //getFragmentManager().beginTransaction().replace(R.id.fragment_content, new ProgressFragment()).commit();
             }
         }
     }
 
     private void setupViewPager(ViewPager viewPager,String type) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager()) {
+        };
         if(type=="Movies"){
-            //adapter.addFragment(new PopularMoviesFragment(), "Popular Movies");
+            //adapter.addFragment(new Fragment(),"Trending Movies");
         }
         else if(type=="Shows"){
+            adapter.addFragment(new ProgressFragment(),"Watched Progress");
+            //adapter.getItem(0).getFragmentManager().beginTransaction().replace(R.id.fragment_content,new ProgressFragment()).commit();
             //adapter.addFragment(new PopularShowsFragment(), "Popular Shows");
 //        adapter.addFragment(new Tab2Fragment(), "TAB2");
 //        adapter.addFragment(new Tab3Fragment(), "TAB3");
