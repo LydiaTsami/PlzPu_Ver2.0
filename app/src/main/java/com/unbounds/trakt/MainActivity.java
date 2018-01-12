@@ -14,9 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.unbounds.trakt.Search.MoviesSearchFragment;
+import com.unbounds.trakt.Search.ShowsSearchFragment;
 import com.unbounds.trakt.login.LoginActivity;
 import com.unbounds.trakt.login.LoginManager;
-import com.unbounds.trakt.progress.ProgressFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -146,14 +147,19 @@ public class MainActivity extends AppCompatActivity
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager()) {
         };
         if(type=="Movies"){
-            //adapter.addFragment(new Fragment(),"Trending Movies");
+            MoviesSearchFragment moviepopularsearchFragment = MoviesSearchFragment.createInstance(MoviesSearchFragment.Type.POPULAR);
+           // TredingMoviesFragment movietrendingsearchFragment = TredingMoviesFragment.createInstance();
+            adapter.addFragment(moviepopularsearchFragment,"Popular");
+//            adapter.addFragment(movietrendingsearchFragment,"Trending");
+            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
+            adapter.addFragment(popularsearchFragment,"Popular Shows");
         }
         else if(type=="Shows"){
-            adapter.addFragment(new ProgressFragment(),"Watched Progress");
-            //adapter.getItem(0).getFragmentManager().beginTransaction().replace(R.id.fragment_content,new ProgressFragment()).commit();
-            //adapter.addFragment(new PopularShowsFragment(), "Popular Shows");
-//        adapter.addFragment(new Tab2Fragment(), "TAB2");
-//        adapter.addFragment(new Tab3Fragment(), "TAB3");
+            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
+            ShowsSearchFragment trendingsearchFragment= ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.TRENDING);
+            adapter.addFragment(trendingsearchFragment,"Trending");
+            adapter.addFragment(popularsearchFragment,"Popular Shows");
+            //adapter.addFragment(new ProgressFragment(),"Watched Progress");
         }
         viewPager.setAdapter(adapter);
     }

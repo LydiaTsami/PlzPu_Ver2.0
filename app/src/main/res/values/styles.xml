@@ -44,4 +44,10 @@
         <item name="android:color">@color/almost_black</item>
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="Text.SubText.Bold">
+        <item name="android:textColor">@color/almost_black</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

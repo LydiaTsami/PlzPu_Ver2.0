@@ -59,6 +59,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:support-v4:25.4.0'
+    implementation 'com.android.support:recyclerview-v7:25.4.0'
     compile 'com.android.support:appcompat-v7:25.2.0'
     implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
     compile 'com.android.support:customtabs:25.2.0'

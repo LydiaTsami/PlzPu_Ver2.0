@@ -6,10 +6,12 @@ package com.unbounds.trakt.api.model;
 public class Season {
     private final long number;
     private final Ids ids;
+    private final Episode[] episodes;
 
-    public Season(final long number, final Ids ids) {
+    public Season(final long number, final Ids ids, final Episode[] episodes) {
         this.number = number;
         this.ids = ids;
+        this.episodes = episodes;
     }
 
     public long getNumber() {
@@ -18,6 +20,10 @@ public class Season {
 
     public Ids getIds() {
         return ids;
+    }
+
+    public Episode[] getEpisodes() {
+        return episodes;
     }
 
     public static class Ids {
