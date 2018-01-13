@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +18,9 @@ import android.view.MenuItem;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import com.unbounds.trakt.Search.MoviesSearchFragment;
+import com.unbounds.trakt.Search.ShowsSearchFragment;
+import com.unbounds.trakt.Search.TredingMoviesFragment;
 import com.unbounds.trakt.login.LoginActivity;
 import com.unbounds.trakt.login.LoginManager;
 import com.unbounds.trakt.progress.ProgressFragment;
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity
     private static final int LOGIN_REQUEST = 1;
     private static final String APP_SHARE_HASHTAG = " #PlzPUApp";
 
+    private FragmentManager fragmentManager;
+    private Fragment fragment = null;
     private SectionsPageAdapter mSectionsPageAdapter;
     private ShareActionProvider mShareActionProvider;
     private ViewPager mViewPager;
@@ -45,6 +52,7 @@ public class MainActivity extends AppCompatActivity
 //                        .setAction("Add", null).show();
 //            }
 //        });
+
 
         if (LoginManager.getInstance().isLoggedIn()) {
             RemoteViews remoteViews = new RemoteViews(getPackageName(), R.menu.activity_navigation_drawer);
@@ -66,7 +74,7 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         navigationView.getMenu().getItem(0).setChecked(true);
-        onNavigationItemSelected(navigationView.getMenu().getItem(1));
+        onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
     }
 
@@ -153,19 +161,17 @@ public class MainActivity extends AppCompatActivity
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager()) {
         };
         if(type=="Movies"){
-//            MoviesSearchFragment moviepopularsearchFragment = MoviesSearchFragment.createInstance(MoviesSearchFragment.Type.POPULAR);
-//           // TredingMoviesFragment movietrendingsearchFragment = TredingMoviesFragment.createInstance();
-//            adapter.addFragment(moviepopularsearchFragment,"Popular");
-////            adapter.addFragment(movietrendingsearchFragment,"Trending");
-//            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
-//            adapter.addFragment(popularsearchFragment,"Popular Shows");
+            MoviesSearchFragment moviepopularsearchFragment = MoviesSearchFragment.createInstance(MoviesSearchFragment.Type.POPULAR);
+            TredingMoviesFragment movietrendingsearchFragment = TredingMoviesFragment.createInstance();
+            adapter.addFragment(moviepopularsearchFragment,"Popular");
+            adapter.addFragment(movietrendingsearchFragment,"Trending");
+
         }
         else if(type=="Shows"){
-            System.out.println("Got in");
-//            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
-//            ShowsSearchFragment trendingsearchFragment= ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.TRENDING);
-//            adapter.addFragment(trendingsearchFragment,"Trending");
-//            adapter.addFragment(popularsearchFragment,"Popular Shows");
+            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
+            ShowsSearchFragment trendingsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.TRENDING);
+            adapter.addFragment(trendingsearchFragment,"Trending");
+            adapter.addFragment(popularsearchFragment,"Popular Shows");
             adapter.addFragment(new ProgressFragment(),"Watched Progress");
         }
         viewPager.setAdapter(adapter);

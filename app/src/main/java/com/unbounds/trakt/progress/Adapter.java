@@ -79,12 +79,15 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         Picasso.with(mContext).load(show.getImages().getPoster().getThumb()).into(holder.mShowPoster);
 
         if (holder.mLoaded) {
+            String temp;
+            temp = "S" + watchedProgress.getNextEpisode().getSeason() + "E" + watchedProgress.getNextEpisode().getNumber() + ": " + watchedProgress.getNextEpisode().getTitle();
             holder.mEpisodeTitle.setText(String.format("S%02dE%02d: %s",
                     watchedProgress.getNextEpisode().getSeason(),
                     watchedProgress.getNextEpisode().getNumber(),
                     watchedProgress.getNextEpisode().getTitle()));
             final int percentage = (int) ((double) watchedProgress.getCompleted() * 100 / watchedProgress.getAired());
-            holder.mProgressText.setText(String.format("%d/%d (%d%%)", watchedProgress.getCompleted(), watchedProgress.getAired(), percentage));
+            temp = watchedProgress.getCompleted()+"/" + watchedProgress.getAired() +" (" + percentage + "%)";
+            holder.mProgressText.setText(temp);
             holder.mProgressBar.setProgress(percentage);
             holder.mCheck.setEnabled(true);
             holder.mCheck.setSelected(selected);
