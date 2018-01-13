@@ -3,9 +3,9 @@ package com.unbounds.trakt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -18,12 +18,8 @@ import android.view.MenuItem;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
-import com.unbounds.trakt.Search.MoviesSearchFragment;
-import com.unbounds.trakt.Search.ShowsSearchFragment;
-import com.unbounds.trakt.Search.TredingMoviesFragment;
 import com.unbounds.trakt.login.LoginActivity;
 import com.unbounds.trakt.login.LoginManager;
-import com.unbounds.trakt.progress.ProgressFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -53,6 +49,8 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        });
 
+        fragmentManager = getSupportFragmentManager();
+        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         if (LoginManager.getInstance().isLoggedIn()) {
             RemoteViews remoteViews = new RemoteViews(getPackageName(), R.menu.activity_navigation_drawer);
@@ -69,10 +67,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        // mViewPager = (ViewPager) findViewById(R.id.container);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
+        //TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        //tabLayout.setupWithViewPager(mViewPager);
         navigationView.getMenu().getItem(0).setChecked(true);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
 
@@ -118,11 +116,19 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_movie) {
             MainActivity.this.setTitle("Movies");
-            setupViewPager(mViewPager,"Movies");
+            fragment = new MovieFragment();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.fragment_content, fragment);
+            transaction.commit();
+            //setupViewPager(mViewPager,"Movies");
 
         } else if (id == R.id.nav_show) {
             MainActivity.this.setTitle("Shows");
-            setupViewPager(mViewPager, "Shows");
+            fragment = new ShowFragment();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            transaction.replace(R.id.fragment_content, fragment);
+            transaction.commit();
+            //setupViewPager(mViewPager, "Shows");
 
         } else if (id == R.id.nav_share) {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -156,26 +162,4 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
-    private void setupViewPager(ViewPager viewPager,String type) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager()) {
-        };
-        if(type=="Movies"){
-            MoviesSearchFragment moviepopularsearchFragment = MoviesSearchFragment.createInstance(MoviesSearchFragment.Type.POPULAR);
-            TredingMoviesFragment movietrendingsearchFragment = TredingMoviesFragment.createInstance();
-            adapter.addFragment(moviepopularsearchFragment,"Popular");
-            adapter.addFragment(movietrendingsearchFragment,"Trending");
-
-        }
-        else if(type=="Shows"){
-            ShowsSearchFragment popularsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
-            ShowsSearchFragment trendingsearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.TRENDING);
-            adapter.addFragment(trendingsearchFragment,"Trending");
-            adapter.addFragment(popularsearchFragment,"Popular Shows");
-            adapter.addFragment(new ProgressFragment(),"Watched Progress");
-        }
-        viewPager.setAdapter(adapter);
-    }
-
-
 }
