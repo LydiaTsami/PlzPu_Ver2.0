@@ -42,10 +42,11 @@ android {
         debug {
             applicationIdSuffix '.debug'
             buildConfigField("String", "AccessToken", "null")
-            buildConfigField("String", "CLIENT_ID", "\"26e3ae98275c5a2b752f2220800fe0c009e91a5e001d050cbc1e6ad7229a20c8\"")
-            buildConfigField("String", "CLIENT_SECRET", "\"6fe2a367874d9b046714bdc104df9783ed7292567399c89360f80fdb8336cd61\"")
-            buildConfigField("String", "BASE_API_URL", "\"http://api.staging.trakt.tv\"")
-            buildConfigField("String", "BASE_URL", "\"http://staging.trakt.tv\"")
+            buildConfigField("String", "CLIENT_ID", "\"5ba92899657e47a3239d4e41db0141edd3d6a2c056ee55a29d2340f998279793\"")
+            buildConfigField("String", "CLIENT_SECRET", "\"a270cc17050fb176bef72dbc2c52e244c4790d1dadd5f9911e649b63ab51c56f\"")
+            buildConfigField("String", "TMDB_API_KEY" , "\"59dc6c56103631e37641f91935895768\"")
+            buildConfigField("String", "BASE_API_URL", "\"https://api.trakt.tv\"")
+            buildConfigField("String", "BASE_URL", "\"https://trakt.tv\"")
 
             resValue "string", "oauth_referrer_scheme", '"trakt-debug"'
             resValue "string", "oauth_referrer", '"trakt-debug://oauth"'

@@ -54,14 +54,6 @@ public class ApiWrapper {
         }.asObservable(Show[].class);
     }
 
-    public static Observable<Movie[]> getTrendingMovies() {
-        return new RxRequest() {
-            @Override
-            protected HttpRequest request() {
-                return new HttpRequest("/movies/trending?extended=images").get();
-            }
-        }.asObservable(Movie[].class);
-    }
 
     public static Observable<Show[]> getPopularShows() {
         return new RxRequest() {
@@ -76,12 +68,19 @@ public class ApiWrapper {
         return new RxRequest() {
             @Override
             protected HttpRequest request() {
-                return new HttpRequest("/movies/popular?extended=images").get();
+                return new HttpRequest("/movies/popular").get();
             }
         }.asObservable(Movie[].class);
     }
 
-
+    public static Observable<Movie[]> getTrendingMovies() {
+        return new RxRequest() {
+            @Override
+            protected HttpRequest request() {
+                return new HttpRequest("/movies/trending?extended=images").get();
+            }
+        }.asObservable(Movie[].class);
+    }
 
     public static Observable<AddHistory> postWatchedItems(final WatchedItems watchedItems) {
         return new RxRequest() {

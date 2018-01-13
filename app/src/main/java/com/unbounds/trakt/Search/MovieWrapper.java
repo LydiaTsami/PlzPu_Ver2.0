@@ -19,6 +19,12 @@ public class MovieWrapper {
     public MovieWrapper(final Movie movie) {
         mWatchers = null;
         mMovie = movie;
+        setMovieUrl();
+    }
+
+    public void setMovieUrl(){
+        System.out.println("mMovie "+ mMovie.getTitle());
+        new LoadFromUrlTask(mMovie).execute();
     }
 
     public long getWatchers() {

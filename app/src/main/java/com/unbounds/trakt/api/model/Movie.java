@@ -1,10 +1,12 @@
 package com.unbounds.trakt.api.model;
 
+import com.unbounds.trakt.Search.LoadFromUrlTask;
+
 /**
  * Created by maclir on 2015-11-21.
  */
 public class Movie {
-    private final String title;
+    private String title;
     private final long year;
     private final Ids ids;
 
@@ -12,6 +14,7 @@ public class Movie {
         this.title = title;
         this.year = year;
         this.ids = ids;
+        new LoadFromUrlTask(this);
     }
 
     public String getTitle() {
@@ -31,12 +34,22 @@ public class Movie {
         private final String slug;
         private final String imdb;
         private final long tmdb;
+        private String url;
 
         public Ids(final long trakt, final String slug, final String imdb, final long tmdb) {
             this.trakt = trakt;
             this.slug = slug;
             this.imdb = imdb;
             this.tmdb = tmdb;
+            this.url= null;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getImageUrl(){
+            return this.url;
         }
 
         public long getTrakt() {
@@ -54,5 +67,7 @@ public class Movie {
         public long getTmdb() {
             return tmdb;
         }
+
     }
+
 }

@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.unbounds.trakt.R;
 import com.unbounds.trakt.api.model.Show;
 
@@ -41,7 +40,7 @@ class ShowAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.show_item, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.mShowPoster = (ImageView) convertView.findViewById(R.id.gridview_item_show_poster);
+            //viewHolder.mShowPoster = (ImageView) convertView.findViewById(R.id.gridview_item_show_poster);
             viewHolder.mShowTitle = (TextView) convertView.findViewById(R.id.gridview_item_show_title);
             viewHolder.mShowYear = (TextView) convertView.findViewById(R.id.gridview_item_show_year);
             viewHolder.mShowWatchers = (TextView) convertView.findViewById(R.id.gridview_item_show_watchers_amount);
@@ -51,7 +50,7 @@ class ShowAdapter extends BaseAdapter {
         }
 
         final Show show = mWrappedShows.get(position).getShow();
-        Picasso.with(mContext).load(show.getImages().getPoster().getThumb()).into(viewHolder.mShowPoster);
+//        Picasso.with(mContext).load(show.getImages().getPoster().getThumb()).into(viewHolder.mShowPoster);
         viewHolder.mShowTitle.setText(show.getTitle());
         viewHolder.mShowYear.setText(String.valueOf(show.getYear()));
         if (mWrappedShows.get(position).hasWatchers()) {

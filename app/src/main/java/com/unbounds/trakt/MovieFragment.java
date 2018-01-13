@@ -25,9 +25,9 @@ public class MovieFragment extends Fragment{
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_show, container, false);
-        tabLayout = (TabLayout)view.findViewById(R.id.tabs);
-        viewPager = (ViewPager)view.findViewById(R.id.view_pager);
+        View view = inflater.inflate(R.layout.fragment_movie, container, false);
+        tabLayout = (TabLayout)view.findViewById(R.id.tabs_movie);
+        viewPager = (ViewPager)view.findViewById(R.id.view_pager_movie);
         viewPager.setAdapter(new MovieFragmentPageAdapter(getChildFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
         return view;

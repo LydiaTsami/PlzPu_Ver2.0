@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.unbounds.trakt.R;
 import com.unbounds.trakt.api.model.Movie;
 
@@ -35,6 +36,7 @@ class MovieAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
         final ViewHolder viewHolder;
+        final Movie movie = mWrappedMovies.get(position).getmMovie();
 
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext())
@@ -49,10 +51,14 @@ class MovieAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final Movie movie = mWrappedMovies.get(position).getmMovie();
-        //Picasso.with(mContext).load(movie.getImages().getPoster().getThumb()).into(viewHolder.mShowPoster);
-        viewHolder.mShowTitle.setText(movie.getTitle());
-        viewHolder.mShowYear.setText(String.valueOf(movie.getYear()));
+        try {
+            System.out.println("movie: "+ movie.getTitle() +" Image path: " +movie.getIds().getImageUrl());
+            Picasso.with(mContext).load(movie.getIds().getImageUrl()).into(viewHolder.mShowPoster);
+            viewHolder.mShowTitle.setText(movie.getTitle());
+            viewHolder.mShowYear.setText(String.valueOf(movie.getYear()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (mWrappedMovies.get(position).hasWatchers()) {
             viewHolder.mShowWatchers.setVisibility(View.VISIBLE);
             viewHolder.mShowWatchers.setText(String.valueOf(mWrappedMovies.get(position).getWatchers()));

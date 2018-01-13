@@ -19,8 +19,7 @@ import rx.functions.Func1;
  * Created by lydts on 1/12/2018.
  */
 
-public class MoviesSearchFragment extends Fragment {
-
+public class MoviesSearchFragment extends Fragment{
     private static final String ARGUMENT_TYPE = "";
 
     public enum Type {
@@ -46,13 +45,14 @@ public class MoviesSearchFragment extends Fragment {
         final MovieAdapter adapter = new MovieAdapter(getActivity());
 
         if (type == Type.POPULAR) {
-            System.out.println("Got In");
             ApiWrapper.getPopularMovies().map(new Func1<Movie[], MovieWrapper[]>() {
                 @Override
                 public MovieWrapper[] call(final Movie[] movies) {
                     final MovieWrapper[] wrappedMovie = new MovieWrapper[movies.length];
                     for (int i = 0; i < movies.length; i++) {
                         wrappedMovie[i] = new MovieWrapper(movies[i]);
+                        //new LoadFromUrlTask(wrappedMovie[i].getmMovie()).execute();
+                        //System.out.println("movie: " + wrappedMovie[i].getmMovie().getTitle() + " Image path: " + wrappedMovie[i].getmMovie().getIds().getImageUrl());
                     }
                     return wrappedMovie;
                 }
@@ -85,4 +85,5 @@ public class MoviesSearchFragment extends Fragment {
         return view;
 
     }
+
 }

@@ -26,13 +26,8 @@ public class ShowFragmentPageAdapter extends FragmentPagerAdapter{
                 ShowsSearchFragment showsSearchFragment = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.POPULAR);
                 return showsSearchFragment;}
             case 2:{
-                try {
                     ShowsSearchFragment showsSearchFragment1 = ShowsSearchFragment.createInstance(ShowsSearchFragment.Type.TRENDING);
                     return showsSearchFragment1;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Problem: " +e);
-                }
             }
         }
         return null;

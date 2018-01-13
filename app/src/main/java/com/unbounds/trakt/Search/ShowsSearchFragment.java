@@ -46,7 +46,6 @@ public class ShowsSearchFragment extends Fragment {
         final ShowAdapter adapter = new ShowAdapter(getActivity());
 
         if (type == Type.POPULAR) {
-            System.out.println("Got In");
             ApiWrapper.getPopularShows().map(new Func1<Show[], ShowWrapper[]>() {
                 @Override
                 public ShowWrapper[] call(final Show[] shows) {

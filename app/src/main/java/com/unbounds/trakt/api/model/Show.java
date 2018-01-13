@@ -207,6 +207,7 @@ public class Show implements Serializable {
         private final String imdb;
         private final long tmdb;
         private final long tvrage;
+        private String url;
 
         public Ids(final long trakt, final String slug, final long tvdb, final String imdb, final long tmdb, final long tvrage) {
             this.trakt = trakt;
@@ -215,6 +216,14 @@ public class Show implements Serializable {
             this.imdb = imdb;
             this.tmdb = tmdb;
             this.tvrage = tvrage;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getImageUrl(){
+            return this.url;
         }
 
         public long getTrakt() {
