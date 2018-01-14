@@ -1,5 +1,7 @@
 package com.unbounds.trakt.api.model;
 
+import com.unbounds.trakt.Search.ShowLoadFromUrlTask;
+
 import java.io.Serializable;
 
 /**
@@ -12,6 +14,7 @@ public class Show implements Serializable {
     private final String status;
     private final Images images;
     private final Ids ids;
+    private String url;
 
     public Show(final String title, final String overview, final long year, String status, final Images images, final Ids ids) {
         this.title = title;
@@ -20,6 +23,15 @@ public class Show implements Serializable {
         this.ids = ids;
         this.overview = overview;
         this.status = status;
+        new ShowLoadFromUrlTask(this).execute();
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getImageUrl(){
+        return this.url;
     }
 
     public Images getImages() {
@@ -207,7 +219,7 @@ public class Show implements Serializable {
         private final String imdb;
         private final long tmdb;
         private final long tvrage;
-        private String url;
+
 
         public Ids(final long trakt, final String slug, final long tvdb, final String imdb, final long tmdb, final long tvrage) {
             this.trakt = trakt;
@@ -218,13 +230,6 @@ public class Show implements Serializable {
             this.tvrage = tvrage;
         }
 
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public String getImageUrl(){
-            return this.url;
-        }
 
         public long getTrakt() {
             return trakt;

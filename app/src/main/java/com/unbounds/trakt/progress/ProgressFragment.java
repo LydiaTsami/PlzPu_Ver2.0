@@ -26,7 +26,6 @@ public class ProgressFragment extends Fragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-            System.out.println("Got in");
             final View view = inflater.inflate(R.layout.activity_progress, container, false);
             final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.progress_recycle_view);
             recyclerView.setHasFixedSize(true);

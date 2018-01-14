@@ -76,7 +76,7 @@ class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         holder.mLoaded = watchedProgress != null && !watchedProgress.isCompleted();
         holder.mShowTitle.setText(show.getTitle());
-        Picasso.with(mContext).load(show.getImages().getPoster().getThumb()).into(holder.mShowPoster);
+        Picasso.with(mContext).load(show.getImageUrl()).into(holder.mShowPoster);
 
         if (holder.mLoaded) {
             String temp;

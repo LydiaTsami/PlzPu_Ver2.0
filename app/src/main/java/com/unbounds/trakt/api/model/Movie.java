@@ -1,7 +1,5 @@
 package com.unbounds.trakt.api.model;
 
-import com.unbounds.trakt.Search.LoadFromUrlTask;
-
 /**
  * Created by maclir on 2015-11-21.
  */
@@ -14,7 +12,6 @@ public class Movie {
         this.title = title;
         this.year = year;
         this.ids = ids;
-        new LoadFromUrlTask(this);
     }
 
     public String getTitle() {

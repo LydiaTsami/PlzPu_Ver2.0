@@ -1,5 +1,6 @@
 package com.unbounds.trakt.progress;
 
+import com.unbounds.trakt.Search.ShowLoadFromUrlTask;
 import com.unbounds.trakt.api.model.Show;
 import com.unbounds.trakt.api.model.response.WatchedProgress;
 
@@ -13,11 +14,13 @@ class WatchedProgressWrapper {
 
     WatchedProgressWrapper(final Show show) {
         mShow = show;
+        new ShowLoadFromUrlTask(show).execute();
     }
 
     WatchedProgressWrapper(final WatchedProgress watchedProgress, final Show show) {
         mWatchedProgress = watchedProgress;
         mShow = show;
+        new ShowLoadFromUrlTask(show).execute();
     }
 
     Show getShow() {
