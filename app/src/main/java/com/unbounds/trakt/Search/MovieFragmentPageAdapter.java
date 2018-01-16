@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class MovieFragmentPageAdapter extends FragmentPagerAdapter {
     private static final String TAG = MovieFragmentPageAdapter.class.getSimpleName();
-    private static final int FRAGMENT_COUNT = 4;
+    private static final int FRAGMENT_COUNT = 2;
     public MovieFragmentPageAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -18,11 +18,11 @@ public class MovieFragmentPageAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0: {
-                MoviesSearchFragment moviesSearchFragment = MoviesSearchFragment.createInstance(MoviesSearchFragment.Type.POPULAR);
+                PopularMoviesFragment moviesSearchFragment = new PopularMoviesFragment();
                 return moviesSearchFragment;}
             case 1:{
-            MoviesSearchFragment moviesSearchFragment = MoviesSearchFragment.createInstance(MoviesSearchFragment.Type.TRENDING);
-            return moviesSearchFragment;}
+                TrendingMoviesFragment moviesSearchFragment2 = new TrendingMoviesFragment();
+                return moviesSearchFragment2;}
         }
         return null;
     }

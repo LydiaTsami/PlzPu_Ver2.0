@@ -18,6 +18,7 @@ import com.unbounds.trakt.Search.MovieFragmentPageAdapter;
 
 public class MovieFragment extends Fragment{
     private static final String TAG = MovieFragment.class.getSimpleName();
+    private MovieFragmentPageAdapter adapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     public MovieFragment() {
@@ -26,9 +27,12 @@ public class MovieFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie, container, false);
+
+        adapter = new MovieFragmentPageAdapter(getChildFragmentManager());
         tabLayout = (TabLayout)view.findViewById(R.id.tabs_movie);
         viewPager = (ViewPager)view.findViewById(R.id.view_pager_movie);
-        viewPager.setAdapter(new MovieFragmentPageAdapter(getChildFragmentManager()));
+        viewPager.setAdapter(adapter);
+        tabLayout = (TabLayout)view.findViewById(R.id.tabs_movie);
         tabLayout.setupWithViewPager(viewPager);
         return view;
     }

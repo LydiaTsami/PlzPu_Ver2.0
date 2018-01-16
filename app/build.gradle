@@ -45,8 +45,10 @@ android {
             buildConfigField("String", "CLIENT_ID", "\"5ba92899657e47a3239d4e41db0141edd3d6a2c056ee55a29d2340f998279793\"")
             buildConfigField("String", "CLIENT_SECRET", "\"a270cc17050fb176bef72dbc2c52e244c4790d1dadd5f9911e649b63ab51c56f\"")
             buildConfigField("String", "TMDB_API_KEY" , "\"59dc6c56103631e37641f91935895768\"")
+            buildConfigField("String", "YOUTUBE_API_KEY" , "\"AIzaSyAUqI6oVl-mP2RUdX_YsHh15ZN9xaiyQ64\"")
             buildConfigField("String", "BASE_API_URL", "\"https://api.trakt.tv\"")
             buildConfigField("String", "BASE_URL", "\"https://trakt.tv\"")
+
 
             resValue "string", "oauth_referrer_scheme", '"trakt-debug"'
             resValue "string", "oauth_referrer", '"trakt-debug://oauth"'
@@ -71,4 +73,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
 }
