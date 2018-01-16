@@ -19,6 +19,7 @@ public class ShowWrapper {
     public ShowWrapper(final Show show) {
         mWatchers = null;
         mShow = show;
+        new LoadShowImagesFromUrlTask(show).execute();
     }
 
     public long getWatchers() {

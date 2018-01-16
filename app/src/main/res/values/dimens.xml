@@ -13,4 +13,12 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <!-- cards listview-->
+    <dimen name="cardMarginHorizontal">12dp</dimen>
+    <dimen name="cardMarginVertical">10dp</dimen>
+
+    <!-- cards details-->
+    <dimen name="cardMarginHorizontal_det">6dp</dimen>
+    <dimen name="cardMarginVertical_det">5dp</dimen>
 </resources>

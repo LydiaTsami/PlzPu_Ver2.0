@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.unbounds.trakt.ApiWrapper;
 import com.unbounds.trakt.R;
+import com.unbounds.trakt.Search.LoadShowImagesFromUrlTask;
 import com.unbounds.trakt.api.model.response.WatchedProgress;
 import com.unbounds.trakt.api.model.response.WatchedShow;
 
@@ -34,7 +35,7 @@ public class ProgressFragment extends Fragment {
             final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(layoutManager);
 
-            final com.unbounds.trakt.progress.Adapter adapter = new Adapter(getActivity());
+            final Adapter adapter = new Adapter(getActivity());
             recyclerView.setAdapter(adapter);
 
             final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.progress_swipe_refresh_layout);
@@ -52,6 +53,7 @@ public class ProgressFragment extends Fragment {
                     final List<WatchedProgressWrapper> watchedProgressWrappers = new ArrayList<>();
                     for (final WatchedShow watchedShow : watchedShows) {
                         final WatchedProgressWrapper watchedProgressWrapper = new WatchedProgressWrapper(watchedShow.getShow());
+                        new LoadShowImagesFromUrlTask(watchedProgressWrapper.getShow()).execute();
                         watchedProgressWrappers.add(watchedProgressWrapper);
                         observables.add(ApiWrapper.getWatchedProgress(watchedShow.getShow().getIds().getTrakt()).map(new Func1<WatchedProgress, WatchedProgressWrapper>() {
                             @Override

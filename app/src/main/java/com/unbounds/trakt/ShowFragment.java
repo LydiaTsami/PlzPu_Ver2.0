@@ -1,4 +1,4 @@
-package com.unbounds.trakt.Search;
+package com.unbounds.trakt;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.unbounds.trakt.R;
+import com.unbounds.trakt.Search.ShowFragmentPageAdapter;
 
 /**
  * Created by lydts on 1/12/2018.
@@ -27,8 +27,8 @@ public class ShowFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_show, container, false);
         tabLayout = (TabLayout)view.findViewById(R.id.tabs);
-        viewPager = (ViewPager)view.findViewById(R.id.container);
-        viewPager.setAdapter(new CustomFragmentPageAdapter(getChildFragmentManager()));
+        viewPager = (ViewPager)view.findViewById(R.id.view_pager);
+        viewPager.setAdapter(new ShowFragmentPageAdapter(getChildFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
         return view;
     }

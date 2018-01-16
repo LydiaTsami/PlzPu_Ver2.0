@@ -11,33 +11,33 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.unbounds.trakt.R;
-import com.unbounds.trakt.api.model.Show;
+import com.unbounds.trakt.api.model.Movie;
 
 import java.util.ArrayList;
 
 /**
  * Created by Akshay on 6/23/2016.
  */
-public class ShowAdapter extends BaseAdapter {
+public class TrendingMovieAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<Show> mShowsList;
+    ArrayList<Movie> mMovieList;
 
 
-    public ShowAdapter(Context context, ArrayList<Show> mShowsList) {
+    public TrendingMovieAdapter(Context context, ArrayList<Movie> mMovieList) {
         this.context = context;
-        this.mShowsList = mShowsList;
+        this.mMovieList = mMovieList;
     }
 
 
     @Override
     public int getCount() {
-        return PopularShowsFragment.mShowList.size();
+        return TrendingMoviesFragment.mMovieList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return PopularShowsFragment.mShowList.get(position);
+        return TrendingMoviesFragment.mMovieList.get(position);
     }
 
     @Override
@@ -65,13 +65,13 @@ public class ShowAdapter extends BaseAdapter {
         //  holder = (ViewHolder) convertView.getTag();
         //}
 
-        Show show = (Show) getItem(position);
+        Movie movie = (Movie) getItem(position);
 
-        holder.title.setText(show.getTitle());
-        holder.year.setText(""+show.getYear());
+        holder.title.setText(movie.getTitle());
+        holder.year.setText(""+movie.getYear());
         try{
             Picasso.with(context)
-                    .load(show.getImageUrl())
+                    .load(movie.getImageUrl())
                     .into(holder.banner);
         }catch (Exception e){ e.printStackTrace(); }
         return convertView;
