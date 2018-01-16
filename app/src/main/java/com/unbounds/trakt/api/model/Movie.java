@@ -5,13 +5,22 @@ package com.unbounds.trakt.api.model;
  */
 public class Movie {
     private String title;
-    private final long year;
-    private final Ids ids;
+    private long year;
+    private  long trakt;
+    private  String slug;
+    private  String imdb;
+    private  String tmdb;
+    private String url;
 
-    public Movie(final String title, final long year, final Ids ids) {
+    public Movie(final String title, final long year) {
         this.title = title;
         this.year = year;
-        this.ids = ids;
+    }
+
+    public Movie(){}
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getTitle() {
@@ -21,25 +30,9 @@ public class Movie {
     public long getYear() {
         return year;
     }
-
-    public Ids getIds() {
-        return ids;
+    public void setYear(int year) {
+        this.year = year;
     }
-
-    public static class Ids {
-        private final long trakt;
-        private final String slug;
-        private final String imdb;
-        private final long tmdb;
-        private String url;
-
-        public Ids(final long trakt, final String slug, final String imdb, final long tmdb) {
-            this.trakt = trakt;
-            this.slug = slug;
-            this.imdb = imdb;
-            this.tmdb = tmdb;
-            this.url= null;
-        }
 
         public void setUrl(String url) {
             this.url = url;
@@ -61,10 +54,22 @@ public class Movie {
             return imdb;
         }
 
-        public long getTmdb() {
+        public String getTmdb() {
             return tmdb;
         }
 
-    }
+        public  void setImdb(String imdb){this.imdb = imdb;}
+
+        public void setTmdb(String tmdb) {
+            this.tmdb = tmdb;
+        }
+
+        public void setTrakt(long trakt) {
+            this.trakt = trakt;
+        }
+
+        public void setSlug(String slug) {
+            this.slug = slug;
+        }
 
 }

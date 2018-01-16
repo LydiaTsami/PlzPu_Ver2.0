@@ -31,7 +31,6 @@ public class LoadShowImagesFromUrlTask extends AsyncTask<String,String,String> {
     protected String doInBackground(String... params){
         if(show.getTitle()!=null) {
             String url = "https://api.themoviedb.org/3/tv/" + show.getTmdb() + "?api_key=" + BuildConfig.TMDB_API_KEY;
-            System.out.println("Image path shows: " + url);
             try {
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -60,7 +59,6 @@ public class LoadShowImagesFromUrlTask extends AsyncTask<String,String,String> {
 
     @Override
     protected void onPostExecute(String s) {
-        System.out.println("Response code for show images: " +responseCode);
         if(show.getTitle()!=null)
             parseResponse(s);
     }

@@ -180,7 +180,6 @@ public class LoadShowsFromUrlTask extends AsyncTask<String,String,String> {
                     if (!joID.isNull("slug"))
                         show.setSlug(joID.getString("slug"));
                 }
-                System.out.println("Popular show : "+show.getTitle() +" pathh: " +show.getImageUrl());
                 showList.add(show);
             }
             return showList;
@@ -198,7 +197,6 @@ public class LoadShowsFromUrlTask extends AsyncTask<String,String,String> {
 
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 Show show = new Show();
-                System.out.println("Got in trending");
                 if(!jsonObject.isNull("show")) {
                     jsonObject = jsonObject.getJSONObject("show");
 
@@ -219,7 +217,6 @@ public class LoadShowsFromUrlTask extends AsyncTask<String,String,String> {
                             show.setSlug(joID.getString("slug"));
                     }
                     new LoadShowImagesFromUrlTask(show).execute();
-                    System.out.println("Trending Show : "+show.getTitle() +" pathh: " +show.getImageUrl());
                     showList.add(show);
                 }  //uncomment for trending movies
             }

@@ -1,20 +1,24 @@
 package com.unbounds.trakt.api.model;
 
-import com.unbounds.trakt.Search.ShowLoadFromUrlTask;
-
 import java.io.Serializable;
 
 /**
  * Created by lydts on 2017-12-21.
  */
 public class Show implements Serializable {
-    private final String title;
-    private final long year;
-    private final String overview;
-    private final String status;
-    private final Images images;
-    private final Ids ids;
+    private  String title;
+    private  long year;
+    private  String overview;
+    private  String status;
+    private  Images images;
+    private  Ids ids;
     private String url;
+    private  long trakt;
+    private  String slug;
+    private  long tvdb;
+    private  String imdb;
+    private  long tmdb;
+    private  long tvrage;
 
     public Show(final String title, final String overview, final long year, String status, final Images images, final Ids ids) {
         this.title = title;
@@ -23,20 +27,84 @@ public class Show implements Serializable {
         this.ids = ids;
         this.overview = overview;
         this.status = status;
-        new ShowLoadFromUrlTask(this).execute();
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public Show(){       new Ids();}
+
+    public void setTrakt(long trakt) {
+        this.trakt = trakt;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+
+    public void setImdb(String imdb) {
+        this.imdb = imdb;
+    }
+
+    public void setTmdb(long tmdb) {
+        System.out.println("TMDB1 :" + tmdb);
+        this.tmdb = tmdb;
+    }
+
+    public long getTrakt() {
+        return trakt;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public long getTvdb() {
+        return tvdb;
+    }
+
+    public String getImdb() {
+        return imdb;
+    }
+
+    public long getTmdb() {
+        return tmdb;
+    }
+
+    public long getTvrage() {
+        return tvrage;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setYear(long year) {
+        this.year = year;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setImages(Images images) {
+        this.images = images;
+    }
+
+    public void setIds(Ids ids) {
+        this.ids = ids;
     }
 
     public String getImageUrl(){
         return this.url;
     }
 
-    public Images getImages() {
-        return images;
+    public void setUrl(String url){
+        this.url = url;
     }
+
 
     public String getTitle() {
         return title;
@@ -67,11 +135,6 @@ public class Show implements Serializable {
 
         return !(ids != null ? !ids.equals(show.ids) : show.ids != null);
 
-    }
-
-    @Override
-    public int hashCode() {
-        return ids != null ? ids.hashCode() : 0;
     }
 
     public static class Images {
@@ -213,12 +276,12 @@ public class Show implements Serializable {
     }
 
     public static class Ids {
-        private final long trakt;
-        private final String slug;
-        private final long tvdb;
-        private final String imdb;
-        private final long tmdb;
-        private final long tvrage;
+        private  long trakt;
+        private  String slug;
+        private  long tvdb;
+        private  String imdb;
+        private  long tmdb;
+        private  long tvrage;
 
 
         public Ids(final long trakt, final String slug, final long tvdb, final String imdb, final long tmdb, final long tvrage) {
@@ -230,29 +293,54 @@ public class Show implements Serializable {
             this.tvrage = tvrage;
         }
 
+        public Ids(){}
 
         public long getTrakt() {
             return trakt;
+        }
+
+        public void setTrakt(long trakt) {
+            this.trakt = trakt;
         }
 
         public String getSlug() {
             return slug;
         }
 
+        public void setSlug(String slug) {
+            this.slug = slug;
+        }
+
         public long getTvdb() {
             return tvdb;
+        }
+
+        public void setTvdb(long tvdb) {
+            this.tvdb = tvdb;
         }
 
         public String getImdb() {
             return imdb;
         }
 
+        public void setImdb(String imdb) {
+            this.imdb = imdb;
+        }
+
         public long getTmdb() {
             return tmdb;
         }
 
+        public void setTmdb(long tmdb) {
+            this.tmdb = tmdb;
+        }
+
         public long getTvrage() {
             return tvrage;
+        }
+
+        public void setTvrage(long tvrage) {
+            this.tvrage = tvrage;
         }
 
         @Override

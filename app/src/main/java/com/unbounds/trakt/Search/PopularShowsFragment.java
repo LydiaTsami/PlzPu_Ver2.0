@@ -2,7 +2,6 @@ package com.unbounds.trakt.Search;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,13 +62,11 @@ public class PopularShowsFragment extends Fragment implements IShowsLoadedListen
 
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                System.out.println("ScrollListener");
                 int threshold = 1;
                 int count = gridview.getCount();
 
                 if (scrollState == SCROLL_STATE_IDLE) {
                     if (gridview.getLastVisiblePosition() >= count - threshold && page_count < max_pages) {
-                        Log.i("TAG", "loading more data");
                         page_count++;
                         // Execute LoadMoreDataTask AsyncTask
                         String url = BuildConfig.BASE_API_URL + "/movies/popular?page=" +page_count;
