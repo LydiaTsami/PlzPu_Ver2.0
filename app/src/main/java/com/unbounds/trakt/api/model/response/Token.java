@@ -1,8 +1,5 @@
 package com.unbounds.trakt.api.model.response;
 
-/**
- * Created by maclir on 2015-11-08.
- */
 public class Token {
     private String accessToken;
     private String tokenType;

@@ -15,7 +15,6 @@ import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.unbounds.trakt.login.LoginActivity;
@@ -43,10 +42,10 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if (LoginManager.getInstance().isLoggedIn()) {
-            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.menu.activity_navigation_drawer);
-            remoteViews.setTextViewText(R.id.sign_in, "Sign out");
-        }
+//        if (LoginManager.getInstance().isLoggedIn()) {
+//            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.menu.activity_navigation_drawer);
+//            remoteViews.setTextViewText(R.id.sign_in, "Sign out");
+//        }
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -56,6 +55,12 @@ public class MainActivity extends AppCompatActivity
 
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+//        if(LoginManager.getInstance().isLoggedIn()){
+//            Button button = (Button) findViewById(R.id.sign_in);
+//            button.setVisibility();
+//            button.setText("Log out");
+//        }
 
 
         navigationView.getMenu().getItem(0).setChecked(true);
@@ -140,14 +145,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        if (requestCode == LOGIN_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                //getFragmentManager().beginTransaction().replace(R.id.fragment_content, new ProgressFragment()).commit();
-            }
-        }
     }
 }

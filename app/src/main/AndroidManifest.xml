@@ -23,6 +23,7 @@
                 <data android:scheme="@string/oauth_referrer_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".Search.MovieDetailsActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize">
