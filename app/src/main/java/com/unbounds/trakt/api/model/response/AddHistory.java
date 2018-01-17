@@ -5,9 +5,6 @@ import com.unbounds.trakt.api.model.Movie;
 import com.unbounds.trakt.api.model.Season;
 import com.unbounds.trakt.api.model.Show;
 
-/**
- * Created by maclir on 2015-11-21.
- */
 public final class AddHistory {
     private final Added added;
     private final NotFound notFound;

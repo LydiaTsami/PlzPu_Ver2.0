@@ -129,6 +129,18 @@ public class LoadMoviesFromUrlTask extends AsyncTask<String,String,String> {
                     movie.setTitle(jsonObject.getString("title"));
                 if (!jsonObject.isNull("year"))
                     movie.setYear(jsonObject.getInt("year"));
+                if (!jsonObject.isNull("tagline"))
+                    movie.setTagline(jsonObject.getString("tagline"));
+                if (!jsonObject.isNull("overview"))
+                    movie.setOverview(jsonObject.getString("overview"));
+                if (!jsonObject.isNull("runtime"))
+                    movie.setRuntime(jsonObject.getInt("runtime"));
+                if (!jsonObject.isNull("trailer"))
+                    movie.setTrailer(jsonObject.getString("trailer"));
+                if (!jsonObject.isNull("homepage"))
+                    movie.setHomepage(jsonObject.getString("homepage"));
+                if (!jsonObject.isNull("rating"))
+                    movie.setRating(jsonObject.getDouble("rating"));
 
                 if (!jsonObject.isNull("ids")){
                     JSONObject joID = jsonObject.getJSONObject("ids");
@@ -165,6 +177,22 @@ public class LoadMoviesFromUrlTask extends AsyncTask<String,String,String> {
                     movie.setTitle(jsonObject.getString("title"));
                 if (!jsonObject.isNull("year"))
                     movie.setYear(jsonObject.getInt("year"));
+                if (!jsonObject.isNull("tagline"))
+                    movie.setTagline(jsonObject.getString("tagline"));
+                if (!jsonObject.isNull("overview"))
+                    movie.setOverview(jsonObject.getString("overview"));
+                if (!jsonObject.isNull("runtime"))
+                    movie.setRuntime(jsonObject.getInt("runtime"));
+                if (!jsonObject.isNull("trailer"))
+                    movie.setTrailer(jsonObject.getString("trailer"));
+                if (!jsonObject.isNull("homepage"))
+                    movie.setHomepage(jsonObject.getString("homepage"));
+                if (!jsonObject.isNull("rating"))
+                    movie.setRating(jsonObject.getDouble("rating"));
+                if (!jsonObject.isNull("genres")) {
+                    JSONArray jj = jsonObject.getJSONArray("genres");
+                    movie.setGenres(jj.toString());
+                }
 
                 if (!jsonObject.isNull("ids")) {
                     JSONObject joID = jsonObject.getJSONObject("ids");
@@ -205,6 +233,22 @@ public class LoadMoviesFromUrlTask extends AsyncTask<String,String,String> {
                             movie.setTitle(jsonObject.getString("title"));
                         if (!jsonObject.isNull("year"))
                             movie.setYear(jsonObject.getInt("year"));
+                        if (!jsonObject.isNull("tagline"))
+                            movie.setTagline(jsonObject.getString("tagline"));
+                        if (!jsonObject.isNull("overview"))
+                            movie.setOverview(jsonObject.getString("overview"));
+                        if (!jsonObject.isNull("runtime"))
+                            movie.setRuntime(jsonObject.getInt("runtime"));
+                        if (!jsonObject.isNull("trailer"))
+                            movie.setTrailer(jsonObject.getString("trailer"));
+                        if (!jsonObject.isNull("homepage"))
+                            movie.setHomepage(jsonObject.getString("homepage"));
+                        if (!jsonObject.isNull("rating"))
+                            movie.setRating(jsonObject.getDouble("rating"));
+                        if (!jsonObject.isNull("genres")) {
+                            JSONArray jj = jsonObject.getJSONArray("genres");
+                            movie.setGenres(jj.toString());
+                        }
 
                         if (!jsonObject.isNull("ids")) {
                             JSONObject joID = jsonObject.getJSONObject("ids");

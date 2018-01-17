@@ -2,9 +2,6 @@ package com.unbounds.trakt.api.model.response;
 
 import com.unbounds.trakt.api.model.Show;
 
-/**
- * Created by maclir on 2015-11-17.
- */
 public final class WatchedShow {
     private final long plays;
     private final String lastWatchedAt;

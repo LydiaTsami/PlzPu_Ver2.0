@@ -2,9 +2,6 @@ package com.unbounds.trakt.api.model.response;
 
 import com.unbounds.trakt.api.model.Episode;
 
-/**
- * Created by maclir on 2015-11-21.
- */
 public class ExtendedEpisode extends Episode {
     private final long plays;
     private final boolean completed;

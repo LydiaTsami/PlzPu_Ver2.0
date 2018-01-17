@@ -1,8 +1,5 @@
 package com.unbounds.trakt.api.model;
 
-/**
- * Created by maclir on 2015-11-21.
- */
 public class Episode {
     private final long season;
     private final long number;

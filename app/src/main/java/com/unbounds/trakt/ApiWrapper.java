@@ -2,8 +2,6 @@ package com.unbounds.trakt;
 
 import com.unbounds.trakt.api.HttpRequest;
 import com.unbounds.trakt.api.RxRequest;
-import com.unbounds.trakt.api.model.Movie;
-import com.unbounds.trakt.api.model.Show;
 import com.unbounds.trakt.api.model.request.Code;
 import com.unbounds.trakt.api.model.request.WatchedItems;
 import com.unbounds.trakt.api.model.response.AddHistory;
@@ -43,43 +41,6 @@ public class ApiWrapper {
                 return new HttpRequest("/shows/%d/progress/watched", showId).get();
             }
         }.asObservable(WatchedProgress.class);
-    }
-
-    public static Observable<Show[]> getTrendingShows() {
-        return new RxRequest() {
-          @Override
-          protected HttpRequest request() {
-              return new HttpRequest("/shows/trending?extended=images").get();
-          }
-        }.asObservable(Show[].class);
-    }
-
-
-    public static Observable<Show[]> getPopularShows() {
-        return new RxRequest() {
-            @Override
-            protected HttpRequest request() {
-                return new HttpRequest("/shows/popular?extended=images").get();
-            }
-        }.asObservable(Show[].class);
-    }
-
-    public static Observable<Movie[]> getPopularMovies() {
-        return new RxRequest() {
-            @Override
-            protected HttpRequest request() {
-                return new HttpRequest("/movies/popular").get();
-            }
-        }.asObservable(Movie[].class);
-    }
-
-    public static Observable<Movie[]> getTrendingMovies() {
-        return new RxRequest() {
-            @Override
-            protected HttpRequest request() {
-                return new HttpRequest("/movies/trending?extended=images").get();
-            }
-        }.asObservable(Movie[].class);
     }
 
     public static Observable<AddHistory> postWatchedItems(final WatchedItems watchedItems) {
