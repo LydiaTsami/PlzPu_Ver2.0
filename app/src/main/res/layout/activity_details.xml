@@ -163,12 +163,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tagline:"
+                    android:text="Title:"
                     android:fontFamily="sans-serif-light"
                     android:textSize="11sp" />
 
                 <TextView
-                    android:id="@+id/tv_det_tagline"
+                    android:id="@+id/tv_det_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

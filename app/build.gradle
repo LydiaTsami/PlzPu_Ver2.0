@@ -22,8 +22,6 @@ android {
         versionName "1.0"
     }
     buildTypes {
-//        def properties = new Properties()
-//        properties.load(new FileInputStream(rootProject.file("trakt.properties")))
 
         release {
             minifyEnabled false
