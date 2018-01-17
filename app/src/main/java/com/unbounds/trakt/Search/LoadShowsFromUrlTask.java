@@ -102,54 +102,13 @@ public class LoadShowsFromUrlTask extends AsyncTask<String,String,String> {
             return;
 
         ArrayList<Show> showList = new ArrayList<>();
-        if(mUrl.contains("?query=")){
-            showList = parseSearchQueryResponse(s);
-        }else {
             if(mUrl.contains("popular"))
                 showList = parsePopularResponse(s);
             else if(mUrl.contains("trending"))
                 showList = parseTrendingResponse(s);
-        }
         if (s.equals("cancled") || this.isCancelled())
             return;
         iShowsLoadedListener.onShowsLoaded(showList,this.scroll);
-    }
-
-    private ArrayList<Show> parseSearchQueryResponse(String s) {
-
-        ArrayList<Show> showList = new ArrayList<>();
-        try {
-            JSONArray jsonArray = new JSONArray(s);
-            for (int i=0;i<jsonArray.length();i++){
-
-                JSONObject jsonObject = jsonArray.getJSONObject(i).getJSONObject("show");
-                Show show = new Show();
-
-                if (!jsonObject.isNull("title"))
-                    show.setTitle(jsonObject.getString("title"));
-                if (!jsonObject.isNull("year"))
-                    show.setYear(jsonObject.getInt("year"));
-
-                if (!jsonObject.isNull("ids")){
-                    JSONObject joID = jsonObject.getJSONObject("ids");
-                    if (!joID.isNull("imdb"))
-                        show.setImdb(joID.getString("imdb"));
-                    if (!joID.isNull("tmdb"))
-                        show.setTmdb(joID.getLong("tmdb"));
-                    if (!joID.isNull("trakt"))
-                        show.setTrakt(joID.getInt("trakt"));
-                    if (!joID.isNull("slug"))
-                        show.setSlug(joID.getString("slug"));
-                }
-                showList.add(show);
-                new LoadShowImagesFromUrlTask(show);
-            }
-            return showList;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     private ArrayList<Show> parsePopularResponse(String s) {
@@ -165,6 +124,14 @@ public class LoadShowsFromUrlTask extends AsyncTask<String,String,String> {
                     show.setTitle(jsonObject.getString("title"));
                 if (!jsonObject.isNull("year"))
                     show.setYear(jsonObject.getInt("year"));
+                if (!jsonObject.isNull("overview"))
+                    show.setOverview(jsonObject.getString("overview"));
+                if (!jsonObject.isNull("runtime"))
+                    show.setRuntime(jsonObject.getInt("runtime"));
+                if (!jsonObject.isNull("trailer"))
+                    show.setTrailer(jsonObject.getString("trailer"));
+                if (!jsonObject.isNull("rating"))
+                    show.setRating(jsonObject.getDouble("rating"));
 
                 if (!jsonObject.isNull("ids")) {
                     JSONObject joID = jsonObject.getJSONObject("ids");
@@ -173,7 +140,7 @@ public class LoadShowsFromUrlTask extends AsyncTask<String,String,String> {
                     if (!joID.isNull("imdb"))
                         show.setImdb(joID.getString("imdb"));
                     if (!joID.isNull("tmdb")) {
-                        show.setTmdb(joID.getLong("tmdb"));
+                        show.setTmdb(joID.getString("tmdb"));
                         System.out.println("TMDB: " +joID.getInt("tmdb"));
                         new LoadShowImagesFromUrlTask(show).execute();
                     }
@@ -190,6 +157,7 @@ public class LoadShowsFromUrlTask extends AsyncTask<String,String,String> {
     }
 
     private ArrayList<Show> parseTrendingResponse(String s) {
+        System.out.println("Got in trending shows");
         ArrayList<Show> showList = new ArrayList<>();
         try {
             JSONArray jsonArray = new JSONArray(s);
@@ -204,13 +172,21 @@ public class LoadShowsFromUrlTask extends AsyncTask<String,String,String> {
                         show.setTitle(jsonObject.getString("title"));
                     if (!jsonObject.isNull("year"))
                         show.setYear(jsonObject.getInt("year"));
+                    if (!jsonObject.isNull("overview"))
+                        show.setOverview(jsonObject.getString("overview"));
+                    if (!jsonObject.isNull("runtime"))
+                        show.setRuntime(jsonObject.getInt("runtime"));
+                    if (!jsonObject.isNull("trailer"))
+                        show.setTrailer(jsonObject.getString("trailer"));
+                    if (!jsonObject.isNull("rating"))
+                        show.setRating(jsonObject.getDouble("rating"));
 
                     if (!jsonObject.isNull("ids")) {
                         JSONObject joID = jsonObject.getJSONObject("ids");
                         if (!joID.isNull("imdb"))
                             show.setImdb(joID.getString("imdb"));
                         if (!joID.isNull("tmdb"))
-                            show.setTmdb(joID.getLong("tmdb"));
+                            show.setTmdb(joID.getString("tmdb"));
                         if (!joID.isNull("trakt"))
                             show.setTrakt(joID.getInt("trakt"));
                         if (!joID.isNull("slug"))

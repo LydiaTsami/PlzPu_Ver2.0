@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         if (uri != null && uri.toString().startsWith(getString(R.string.oauth_referrer))) {
             final String authCode = uri.getQueryParameter("code");
             final Code code = new Code(authCode, getString(R.string.oauth_referrer));
-            Log.i("Auth code ", code.getCode());
             try {
                 ApiWrapper.getToken(code).subscribe(new Action1<Token>() {
                     @Override
@@ -71,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
             }
             catch (Exception e){
                     e.printStackTrace();
-                    System.out.println("Lydia: " + e);
             }
 
         }

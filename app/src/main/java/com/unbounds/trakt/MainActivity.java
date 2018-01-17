@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity
 
     private FragmentManager fragmentManager;
     private Fragment fragment = null;
-    private SectionsPageAdapter mSectionsPageAdapter;
     private ShareActionProvider mShareActionProvider;
     private ViewPager mViewPager;
 
@@ -42,11 +41,6 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-//        if (LoginManager.getInstance().isLoggedIn()) {
-//            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.menu.activity_navigation_drawer);
-//            remoteViews.setTextViewText(R.id.sign_in, "Sign out");
-//        }
-
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -55,12 +49,6 @@ public class MainActivity extends AppCompatActivity
 
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-//        if(LoginManager.getInstance().isLoggedIn()){
-//            Button button = (Button) findViewById(R.id.sign_in);
-//            button.setVisibility();
-//            button.setText("Log out");
-//        }
 
 
         navigationView.getMenu().getItem(0).setChecked(true);
@@ -128,12 +116,9 @@ public class MainActivity extends AppCompatActivity
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_TEXT, APP_SHARE_HASHTAG);
-            startActivity(Intent.createChooser(shareIntent,"Share using"));
+            startActivity(Intent.createChooser(shareIntent, "Share using"));
 
-        } else if (id == R.id.nav_send) {
-
-        }
-        else if( id == R.id.sign_in){
+        }else if( id == R.id.sign_in){
             if(!LoginManager.getInstance().isLoggedIn())
                 startActivityForResult(LoginActivity.createIntent(MainActivity.this), LOGIN_REQUEST);
             else {

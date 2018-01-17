@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.unbounds.trakt.login.LoginManager;
-import com.unbounds.trakt.progress.ProgressFragment;
 
 
 public class ShowFragmentPageAdapter extends FragmentPagerAdapter{
@@ -20,33 +19,16 @@ public class ShowFragmentPageAdapter extends FragmentPagerAdapter{
     }
     @Override
     public Fragment getItem(int position) {
-        if(LoginManager.getInstance().isLoggedIn()) {
-            switch (position) {
-                case 0: {
-                    return new ProgressFragment();
-                }
-                case 1: {
-                    PopularShowsFragment popularShowsFragment = new PopularShowsFragment();
-                    return popularShowsFragment;
-                }
-//            case 2:{
-//                    PopularShowsFragment popularShowsFragment = new PopularShowsFragment();
-//                    return popularShowsFragment;
-//            }
-            }
-        }
-        else {
             switch (position) {
                 case 0: {
                     PopularShowsFragment popularShowsFragment = new PopularShowsFragment();
                     return popularShowsFragment;
                 }
-//            case 2:{
-//                    PopularShowsFragment popularShowsFragment = new PopularShowsFragment();
-//                    return popularShowsFragment;
-//            }
+                case 1:{
+                    TrendingShowsFragment trendingShowsFragment = new TrendingShowsFragment();
+                    return trendingShowsFragment;
+                }
             }
-        }
         return null;
     }
     @Override
@@ -57,20 +39,20 @@ public class ShowFragmentPageAdapter extends FragmentPagerAdapter{
     public CharSequence getPageTitle(int position) {
         if(LoginManager.getInstance().isLoggedIn()) {
             switch (position) {
+//                case 0:
+//                    return "Watched Progress";
                 case 0:
-                    return "Watched Progress";
-                case 1:
                     return "Popular";
-//            case 2:
-//                return "Trending";
+            case 1:
+                return "Trending";
             }
         }
         else {
             switch (position) {
                 case 0:
                     return "Popular";
-//            case 2:
-//                return "Trending";
+            case 2:
+                return "Trending";
             }
         }
         return null;

@@ -16,15 +16,15 @@ import com.unbounds.trakt.api.model.Show;
 import java.util.ArrayList;
 
 /**
- * Created by Akshay on 6/23/2016.
+ * Created by lydts on 1/12/2018.
  */
-public class ShowAdapter extends BaseAdapter {
+public class PopularShowAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<Show> mShowsList;
 
 
-    public ShowAdapter(Context context, ArrayList<Show> mShowsList) {
+    public PopularShowAdapter(Context context, ArrayList<Show> mShowsList) {
         this.context = context;
         this.mShowsList = mShowsList;
     }
