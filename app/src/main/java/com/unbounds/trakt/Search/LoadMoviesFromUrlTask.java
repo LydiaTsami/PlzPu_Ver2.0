@@ -102,66 +102,14 @@ public class LoadMoviesFromUrlTask extends AsyncTask<String,String,String> {
             return;
 
         ArrayList<Movie> movieList = new ArrayList<>();
-        if(mUrl.contains("?query=")){
-            movieList = parseSearchQueryResponse(s);
-        }else {
+
             if(mUrl.contains("popular"))
                 movieList = parsePopularResponse(s);
             else if(mUrl.contains("trending"))
                 movieList = parseTrendingResponse(s);
-        }
         if (s.equals("cancled") || this.isCancelled())
             return;
         iMoviesLoadedListener.onPopularMoviesLoaded(movieList,this.scroll);
-    }
-
-    private ArrayList<Movie> parseSearchQueryResponse(String s) {
-
-        ArrayList<Movie> movieList = new ArrayList<>();
-        try {
-            JSONArray jsonArray = new JSONArray(s);
-            for (int i=0;i<jsonArray.length();i++){
-
-                JSONObject jsonObject = jsonArray.getJSONObject(i).getJSONObject("movie");
-                Movie movie = new Movie();
-
-                if (!jsonObject.isNull("title"))
-                    movie.setTitle(jsonObject.getString("title"));
-                if (!jsonObject.isNull("year"))
-                    movie.setYear(jsonObject.getInt("year"));
-                if (!jsonObject.isNull("tagline"))
-                    movie.setTagline(jsonObject.getString("tagline"));
-                if (!jsonObject.isNull("overview"))
-                    movie.setOverview(jsonObject.getString("overview"));
-                if (!jsonObject.isNull("runtime"))
-                    movie.setRuntime(jsonObject.getInt("runtime"));
-                if (!jsonObject.isNull("trailer"))
-                    movie.setTrailer(jsonObject.getString("trailer"));
-                if (!jsonObject.isNull("homepage"))
-                    movie.setHomepage(jsonObject.getString("homepage"));
-                if (!jsonObject.isNull("rating"))
-                    movie.setRating(jsonObject.getDouble("rating"));
-
-                if (!jsonObject.isNull("ids")){
-                    JSONObject joID = jsonObject.getJSONObject("ids");
-                    if (!joID.isNull("imdb"))
-                        movie.setImdb(joID.getString("imdb"));
-                    if (!joID.isNull("tmdb"))
-                        movie.setTmdb(joID.getString("tmdb"));
-                    if (!joID.isNull("trakt"))
-                        movie.setTrakt(joID.getInt("trakt"));
-                    if (!joID.isNull("slug"))
-                        movie.setSlug(joID.getString("slug"));
-                }
-                movieList.add(movie);
-                new LoadImagesFromUrlTask(movie);
-            }
-            return movieList;
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     private ArrayList<Movie> parsePopularResponse(String s) {

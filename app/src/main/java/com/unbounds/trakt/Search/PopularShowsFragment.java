@@ -1,11 +1,13 @@
 package com.unbounds.trakt.Search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.unbounds.trakt.BuildConfig;
@@ -18,9 +20,9 @@ import java.util.ArrayList;
  * Created by lydts on 1/12/2018.
  */
 
-public class PopularShowsFragment extends Fragment implements IShowsLoadedListener {
+public class PopularShowsFragment extends Fragment implements IShowsLoadedListener,AdapterView.OnItemClickListener {
     private static int ARGUMENT_TYPE;
-    private ShowAdapter adapter;
+    private PopularShowAdapter adapter;
     public static ArrayList<Show> mShowList;
     private GridView gridview;
 
@@ -36,11 +38,11 @@ public class PopularShowsFragment extends Fragment implements IShowsLoadedListen
         final View view = inflater.inflate(R.layout.fragment_search, container, false);
         gridview = (GridView) view.findViewById(R.id.search_gridview);
         gridview.setOnScrollListener(onScrollListener());
-        // gridview.setOnItemClickListener(this);
+        gridview.setOnItemClickListener(this);
 
-        String url = BuildConfig.BASE_API_URL + "/shows/popular?page=" +page_count;
+        String url = BuildConfig.BASE_API_URL + "/shows/popular?page=" +page_count + "&extended=full";
         getDataFromUrl(url);
-        adapter = new ShowAdapter(getActivity(), mShowList);
+        adapter = new PopularShowAdapter(getActivity(), mShowList);
         gridview.setAdapter(adapter);
 
         return view;
@@ -69,7 +71,7 @@ public class PopularShowsFragment extends Fragment implements IShowsLoadedListen
                     if (gridview.getLastVisiblePosition() >= count - threshold && page_count < max_pages) {
                         page_count++;
                         // Execute LoadMoreDataTask AsyncTask
-                        String url = BuildConfig.BASE_API_URL + "/movies/popular?page=" +page_count;
+                        String url = BuildConfig.BASE_API_URL + "/shows/popular?page=" +page_count + "&extended=full";
                         getDataFromUrl(url);
                     }
                 }
@@ -81,5 +83,23 @@ public class PopularShowsFragment extends Fragment implements IShowsLoadedListen
             }
 
         };
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Show show = mShowList.get(position);
+
+        Intent intent = new Intent(getActivity(), ShowDetailsActivity.class);
+        intent.putExtra("title",show.getTitle());
+        intent.putExtra("year",show.getYear());
+        intent.putExtra("overview",show.getOverview());
+        intent.putExtra("imdb",show.getImdb());
+        intent.putExtra("tmdb",show.getTmdb());
+        intent.putExtra("trailer",show.getTrailer());
+        intent.putExtra("rating",show.getRating());
+        intent.putExtra("runtime",show.getRuntime());
+
+        startActivity(intent);
     }
 }

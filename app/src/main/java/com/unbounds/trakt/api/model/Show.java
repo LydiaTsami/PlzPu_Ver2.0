@@ -16,9 +16,11 @@ public class Show implements Serializable {
     private  long trakt;
     private  String slug;
     private  long tvdb;
-    private  String imdb;
-    private  long tmdb;
+    private  String imdb,trailer;
+    private  String tmdb;
     private  long tvrage;
+    private int runtime;
+    private double rating;
 
     public Show(final String title, final String overview, final long year, String status, final Images images, final Ids ids) {
         this.title = title;
@@ -39,13 +41,44 @@ public class Show implements Serializable {
         this.slug = slug;
     }
 
+    public String getTrailer() {
+        return trailer;
+    }
+
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
 
     public void setImdb(String imdb) {
         this.imdb = imdb;
     }
 
-    public void setTmdb(long tmdb) {
-        System.out.println("TMDB1 :" + tmdb);
+    public void setTmdb(String tmdb) {
         this.tmdb = tmdb;
     }
 
@@ -65,7 +98,7 @@ public class Show implements Serializable {
         return imdb;
     }
 
-    public long getTmdb() {
+    public String getTmdb() {
         return tmdb;
     }
 
@@ -79,10 +112,6 @@ public class Show implements Serializable {
 
     public void setYear(long year) {
         this.year = year;
-    }
-
-    public void setOverview(String overview) {
-        this.overview = overview;
     }
 
     public void setStatus(String status) {
@@ -116,10 +145,6 @@ public class Show implements Serializable {
 
     public Ids getIds() {
         return ids;
-    }
-
-    public String getOverview() {
-        return overview;
     }
 
     public String getStatus() {

@@ -13,15 +13,12 @@ class WatchedProgressWrapper {
 
     WatchedProgressWrapper(final Show show) {
         mShow = show;
-        mShow.setTmdb(mShow.getIds().getTmdb());
-//        new LoadShowImagesFromUrlTask(show).execute();
+        mShow.setTmdb(mShow.getTmdb());
     }
 
     WatchedProgressWrapper(final WatchedProgress watchedProgress, final Show show) {
         mWatchedProgress = watchedProgress;
         mShow = show;
-//        mShow.setTmdb(mShow.getIds().getTmdb());
-//        new LoadShowImagesFromUrlTask(show).execute();
     }
 
     Show getShow() {

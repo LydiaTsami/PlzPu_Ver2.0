@@ -12,13 +12,13 @@ import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.unbounds.trakt.BuildConfig;
 import com.unbounds.trakt.R;
-import com.unbounds.trakt.api.model.Movie;
+import com.unbounds.trakt.api.model.Show;
 
 /**
  * Created by lydts on 1/15/2018.
  */
 
-public class MovieDetailsActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
+public class ShowDetailsActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener{
 
     private static final int RECOVERY_DIALOG_REQUEST = 1;
     private YouTubePlayerView youTubeView;
@@ -26,7 +26,7 @@ public class MovieDetailsActivity extends YouTubeBaseActivity implements YouTube
     private TextView tv_title,tv_overview,tv_rating,tv_runtime,tv_year;
     private ImageView iv_homepage,iv_imdb,iv_tmdb;
 
-    Movie movie;
+    Show show;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,36 +56,34 @@ public class MovieDetailsActivity extends YouTubeBaseActivity implements YouTube
 
     private void setData() {
 
-        tv_overview.setText(movie.getOverview());
-        tv_year.setText(movie.getYear()+"");
-        tv_title.setText(movie.getTitle());
-        tv_runtime.setText(movie.getRuntime()+"'");
-        tv_rating.setText(String.valueOf(movie.getRating()).substring(0,4));
+        tv_overview.setText(show.getOverview());
+        tv_year.setText(show.getYear()+"");
+        tv_title.setText(show.getTitle());
+        tv_runtime.setText(show.getRuntime()+"'");
+        tv_rating.setText(String.valueOf(show.getRating()).substring(0,4));
 
     }
 
     private void getIntentData() {
 
-        movie = new Movie();
+        show = new Show();
 
-        movie.setTitle(getIntent().getStringExtra("title"));
-        movie.setYear(getIntent().getIntExtra("year",2013));
-        movie.setTagline(getIntent().getStringExtra("tagline"));
-        movie.setOverview(getIntent().getStringExtra("overview"));
-        movie.setGenres(getIntent().getStringExtra("genres"));
-        movie.setHomepage(getIntent().getStringExtra("homepage"));
-        movie.setImdb(getIntent().getStringExtra("imdb"));
-        movie.setTmdb(getIntent().getStringExtra("tmdb"));
-        movie.setTrailer(getIntent().getStringExtra("trailer"));
-        movie.setRating(getIntent().getDoubleExtra("rating",8.3));
-        movie.setRuntime(getIntent().getIntExtra("runtime",152));
+        show.setTitle(getIntent().getStringExtra("title"));
+        show.setYear(getIntent().getIntExtra("year",2013));
+        show.setOverview(getIntent().getStringExtra("overview"));
+        show.setImdb(getIntent().getStringExtra("imdb"));
+        show.setTmdb(getIntent().getStringExtra("tmdb"));
+        show.setTrailer(getIntent().getStringExtra("trailer"));
+        show.setRating(getIntent().getDoubleExtra("rating",8.3));
+        show.setRuntime(getIntent().getIntExtra("runtime",152));
     }
 
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player,
                                         boolean wasRestored) {
         if (!wasRestored) {
-            player.cueVideo(movie.getTrailer().split("=")[1]);
+            System.out.println("trailer: "+show.getTrailer());
+            player.cueVideo(show.getTrailer().split("=")[1]);
         }
     }
 
