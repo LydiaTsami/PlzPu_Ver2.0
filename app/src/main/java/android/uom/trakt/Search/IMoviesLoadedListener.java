@@ -1,6 +1,6 @@
-package com.unbounds.trakt.Search;
+package android.uom.trakt.Search;
 
-import com.unbounds.trakt.api.model.Movie;
+import android.uom.trakt.Movie;
 
 import java.util.ArrayList;
 

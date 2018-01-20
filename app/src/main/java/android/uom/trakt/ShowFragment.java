@@ -1,4 +1,4 @@
-package com.unbounds.trakt;
+package android.uom.trakt;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.unbounds.trakt.Search.ShowFragmentPageAdapter;
+import android.uom.trakt.Search.ShowFragmentPageAdapter;
 
 /**
  * Created by lydts on 1/12/2018.

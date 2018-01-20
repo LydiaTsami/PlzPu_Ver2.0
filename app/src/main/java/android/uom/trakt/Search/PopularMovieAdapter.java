@@ -1,4 +1,4 @@
-package com.unbounds.trakt.Search;
+package android.uom.trakt.Search;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.unbounds.trakt.R;
-import com.unbounds.trakt.api.model.Movie;
+import android.uom.trakt.R;
+import android.uom.trakt.Movie;
 
 import java.util.ArrayList;
 

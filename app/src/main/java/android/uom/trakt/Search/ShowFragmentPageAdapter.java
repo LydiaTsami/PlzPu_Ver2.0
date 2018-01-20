@@ -1,4 +1,4 @@
-package com.unbounds.trakt.Search;
+package android.uom.trakt.Search;
 
 /**
  * Created by lydts on 1/12/2018.
@@ -7,8 +7,6 @@ package com.unbounds.trakt.Search;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import com.unbounds.trakt.login.LoginManager;
 
 
 public class ShowFragmentPageAdapter extends FragmentPagerAdapter{
@@ -37,7 +35,6 @@ public class ShowFragmentPageAdapter extends FragmentPagerAdapter{
     }
     @Override
     public CharSequence getPageTitle(int position) {
-        if(LoginManager.getInstance().isLoggedIn()) {
             switch (position) {
 //                case 0:
 //                    return "Watched Progress";
@@ -46,15 +43,6 @@ public class ShowFragmentPageAdapter extends FragmentPagerAdapter{
             case 1:
                 return "Trending";
             }
-        }
-        else {
-            switch (position) {
-                case 0:
-                    return "Popular";
-            case 2:
-                return "Trending";
-            }
-        }
         return null;
     }
 }

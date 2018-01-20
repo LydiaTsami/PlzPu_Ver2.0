@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.unbounds.trakt.ShowFragment">
+    tools:context="android.uom.trakt.ShowFragment">
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:padding="6dp"

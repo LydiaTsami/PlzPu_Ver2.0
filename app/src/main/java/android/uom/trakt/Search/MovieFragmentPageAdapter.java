@@ -1,4 +1,4 @@
-package com.unbounds.trakt.Search;
+package android.uom.trakt.Search;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

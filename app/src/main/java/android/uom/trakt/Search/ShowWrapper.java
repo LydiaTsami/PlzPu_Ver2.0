@@ -1,6 +1,6 @@
-package com.unbounds.trakt.Search;
+package android.uom.trakt.Search;
 
-import com.unbounds.trakt.api.model.Show;
+import android.uom.trakt.Show;
 
 /**
  * Created by lydts on 1/12/2018.

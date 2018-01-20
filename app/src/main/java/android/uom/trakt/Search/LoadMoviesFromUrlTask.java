@@ -1,10 +1,10 @@
-package com.unbounds.trakt.Search;
+package android.uom.trakt.Search;
 
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.unbounds.trakt.BuildConfig;
-import com.unbounds.trakt.api.model.Movie;
+import android.uom.trakt.BuildConfig;
+import android.uom.trakt.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
